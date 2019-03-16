@@ -1,0 +1,26 @@
+class Solution {
+public:
+    stack <int> a,b;
+    void push(int value) {
+        if (b.empty()) {
+            b.push(value);
+        } else {
+            if (value < b.top()) {
+                b.push(value);
+            } else {
+                b.push(b.top());
+            }
+        }
+        a.push(value);
+    }
+    void pop() {
+        a.pop();
+        b.pop();
+    }
+    int top() {
+        return a.top();
+    }
+    int min() {
+        return b.top();
+    }
+};
