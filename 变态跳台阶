@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int jumpFloorII(int number) {
+        int i,f;
+        f = 1;
+        for (i=2;i<=number;i++) {
+            f = f << 1;
+        }
+        if (number < 0) {
+            f = 0;
+        }
+        return f;
+    }
+};
