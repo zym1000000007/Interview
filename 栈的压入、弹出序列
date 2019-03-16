@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool IsPopOrder(vector<int> pushV,vector<int> popV) {
+        bool isPopOrder=true;
+        stack <int> s;
+        int j=0,k=0;
+        s.push(pushV[j++]);
+        for (int i=0;i<popV.size();i++) {
+            while (s.top() != popV[i]) {
+                if (j >= pushV.size()) {
+                    isPopOrder = false;
+                    break;
+                }
+                s.push(pushV[j++]);
+            }
+            if (isPopOrder == false) {
+                break;
+            }
+            s.pop();
+        }
+        return isPopOrder;
+    }
+};
