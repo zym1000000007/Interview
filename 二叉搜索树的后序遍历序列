@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool VerifySquenceOfBST(vector<int> sequence) {
+        bool BST = true;
+        int i;
+        int index=sequence.size()-1;
+        if (index < 0) {
+            BST = false;
+        } else {
+            for (i=0;i<index;i++) {
+            if (sequence[i] > sequence[index]) {
+                break;
+            }
+        }
+        if (i > 0) {
+            vector <int> temp(sequence.begin(),sequence.begin()+i);
+            BST = VerifySquenceOfBST(temp);
+        }
+        if ((BST) && (i < index)) {
+            for (int j=i;j<index;j++) {
+                if (sequence[j] < sequence[index]) {
+                    BST = false;
+                    break;
+                }
+            }
+            if (BST) {
+                vector <int> temp(sequence.begin()+i,sequence.begin()+index);
+                BST = VerifySquenceOfBST(temp);
+            }
+        }
+        }
+        
+        return BST;
+    }
+};
