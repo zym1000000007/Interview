@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int find1(int k,vector <int> &data,int left,int right) {
+        int l=left,r=right,mid;
+        while ((l<=right) && (r>=left) && (l<=r)) {
+            mid=(r+l)/2;
+            if (data[mid] < k) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return r;
+    }
+    int find2(int k,vector <int> &data,int left,int right) {
+        int l=left,r=right,mid;
+        while ((l<=right) && (r>=left) && (l<=r)) {
+            mid=(r+l)/2;
+            if (data[mid] <= k) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return l;
+    }
+    int GetNumberOfK(vector<int> data ,int k) {
+        int left=0,right=data.size()-1;
+        int min1=find1(k,data,left,right);
+        int max1=find2(k,data,left,right);
+        return max1-min1-1;
+    }
+};
