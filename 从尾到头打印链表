@@ -1,0 +1,29 @@
+/**
+*  struct ListNode {
+*        int val;
+*        struct ListNode *next;
+*        ListNode(int x) :
+*              val(x), next(NULL) {
+*        }
+*  };
+*/
+class Solution {
+public:
+    vector<int> printListFromTailToHead(ListNode* head) {
+        std::stack <int> s;
+        std::vector <int> ArrayList;
+        ListNode *now;
+        if (head != nullptr) {
+            now = head;
+            while (now != nullptr) {
+                s.push(now->val);
+                now = now->next;
+            }
+            while (!s.empty()) {
+                ArrayList.push_back(s.top());
+                s.pop();
+            }
+        }
+        return ArrayList;
+    }
+};
