@@ -1,0 +1,45 @@
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    bool Same(TreeNode* pRoot1,TreeNode* pRoot2) {
+        bool isSame = false;
+        if (pRoot2 == nullptr) {
+            isSame = true;
+        } else if ((pRoot1) && (pRoot2)) {
+            if (pRoot1->val == pRoot2->val) {
+                isSame = true;
+            }
+            if (isSame) {
+                isSame = Same(pRoot1->left,pRoot2->left);
+                if (isSame) {
+                    isSame = Same(pRoot1->right,pRoot2->right);
+                }
+            }
+        }
+        return isSame;
+    }
+    bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2)
+    {
+        bool isSubstruct=false;
+        if ((pRoot1) && (pRoot2)) {
+            if (pRoot1->val == pRoot2->val) {
+                isSubstruct = Same(pRoot1,pRoot2);
+            }
+            if ((isSubstruct == false)) {
+                isSubstruct = HasSubtree(pRoot1->left,pRoot2);
+                if ((isSubstruct == false)) {
+                    isSubstruct = HasSubtree(pRoot1->right,pRoot2);
+                }
+            }
+        }
+        return isSubstruct;
+    }
+};
